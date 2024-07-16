@@ -1,5 +1,4 @@
 import * as fastify from 'fastify';
-import * as http from 'http';
 
 export interface EssoOptions {
 
@@ -10,7 +9,7 @@ export interface EssoOptions {
     extra_validation?: (
         request: fastify.FastifyRequest,
         reply: fastify.FastifyReply
-    ) => Promise;
+    ) => Promise<void>;
 
     /** Secure key that will be used to do the encryption stuff (cannot be ommited) */
     secret: string;
@@ -91,11 +90,6 @@ declare module 'fastify' {
     }
 }
 
-declare const fastifyEsso: (options: EssoOptions) => fastify.Plugin<
-    http.Server,
-    http.IncomingMessage,
-    http.ServerResponse,
-    {}
->;
+declare const fastifyEsso: fastify.FastifyPluginCallback<EssoOptions>;
 
 export = fastifyEsso;
