@@ -80,9 +80,9 @@ export interface EssoRenameDecoratorsOptions {
 }
 
 declare module 'fastify' {
-    interface FastifyRequest<HttpRequest> {
-        auth: any;
-    }
+    // interface FastifyRequest {
+    //     auth: any;
+    // }
 
     interface FastifyInstance {
         generateAuthToken: function (any): Promise<string>;
